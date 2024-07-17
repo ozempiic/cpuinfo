@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// main func that calls all other funcs
 int main() {
     string cpuName = getCPUName();
     string cpuVendor = getCPUVendor();
