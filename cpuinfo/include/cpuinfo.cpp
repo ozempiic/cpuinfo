@@ -2,9 +2,13 @@
 #include <Windows.h>
 #include <cpuid.h>
 
-std::string getCPUName() {
-    std::array<int, 4> cpui;
-    std::array<int, 4> namePart1, namePart2, namePart3;
+using namespace std;
+
+
+// gets cpu name
+string getCPUName() {
+    array<int, 4> cpui;
+    array<int, 4> namePart1, namePart2, namePart3;
 
     __cpuid(0x80000000, cpui[0], cpui[1], cpui[2], cpui[3]);
     if (cpui[0] >= 0x80000004) {
@@ -22,18 +26,22 @@ std::string getCPUName() {
     return std::string(name);
 }
 
+// checks if it has 1 or more cores
 bool isSingleCPU() {
     SYSTEM_INFO sysInfo;
     GetSystemInfo(&sysInfo);
     return (sysInfo.dwNumberOfProcessors == 1);
 }
 
+
+// checks if hyperthreading is enabled
 bool isHyperThreading() {
     std::array<int, 4> cpui;
     __cpuid(1, cpui[0], cpui[1], cpui[2], cpui[3]);
     return cpui[3] & (1 << 28);
 }
 
+// grabs cpu vendor name
 std::string getCPUVendor() {
     std::array<int, 4> cpui;
     __cpuid(0, cpui[0], cpui[1], cpui[2], cpui[3]);
@@ -45,6 +53,7 @@ std::string getCPUVendor() {
     return std::string(vendor);
 }
 
+// grabs cpu model name
 std::string getCPUModel() {
     std::array<int, 4> cpui;
     __cpuid(1, cpui[0], cpui[1], cpui[2], cpui[3]);
@@ -54,6 +63,7 @@ std::string getCPUModel() {
     return "Family " + std::to_string(family) + ", Model " + std::to_string(model) + ", Stepping " + std::to_string(stepping);
 }
 
+// grabs cpu cache info
 void getCpuCacheInfo(std::string& cacheInfo) {
     int cacheLevel = 0;
 
