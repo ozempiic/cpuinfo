@@ -2,18 +2,6 @@
 
 grabs information on CPU 
 
-## Features
-
-- Retrieves CPU vendor name.
-- Retrieves CPU model details including family, model, and stepping.
-- Detects if only one CPU is present or multiple CPUs.
-- Checks if hyper-threading is enabled or disabled.
-- Retrieves cache information including level, type, size, sets, associativity, and line size.
-
-## Prerequisites
-
-- C++ compiler
-
 ## Example Output
 
 ```
